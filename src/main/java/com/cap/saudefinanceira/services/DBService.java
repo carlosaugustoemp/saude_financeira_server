@@ -1,6 +1,8 @@
 package com.cap.saudefinanceira.services;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,43 +99,150 @@ public class DBService {
 		Conta contaSaidaSal = contaServico.findById(contaSalario.getId());
 		Conta contaEntradaGas = contaServico.findById(contaGasolina.getId());
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			Date data = sdf.parse("04/07/2023");
+			Lancamento lancamento = new Lancamento(TipoConta.REMUNERACAO.getCodigo(), new BigDecimal(1800), data, contaSalario, null, "Pagamento");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("05/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(120), data, contaEntradaGas, contaSaidaSal, "Posto Santos Dumont");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("06/07/2023");
+			lancamento = new Lancamento(TipoConta.TRANSFERENCIA.getCodigo(), new BigDecimal(80), data, contaNuInvest, contaSaidaSal, "Investimento");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("07/07/2023");
+			lancamento = new Lancamento(TipoConta.REMUNERACAO.getCodigo(), new BigDecimal(120), data, contaPLR, null, "PLR");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("08/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(150), data, contaBcoCaixa, contaSaidaSal, "Parcela");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("09/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(11.58), data, contaHigiene, contaSaidaSal, "Desodorante");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("10/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(25.54), data, contaRoupas, contaSaidaSal, "Calça");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("11/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(10.90), data, contaSaude, contaSaidaSal, "Remédio");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("12/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(70.88), data, contaCarro, contaSaidaSal, "Óleo");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("13/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(24.55), data, contaEducacao, contaSaidaSal, "Curso");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("14/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(45.59), data, contaAcademia, contaSaidaSal, "Academia");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("15/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(15.87), data, contaPresentes, contaSaidaSal, "Fulano");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("16/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(7.54), data, contaApartamento, contaSaidaSal, "Torneira");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("17/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(12.25), data, contaPlantas, contaSaidaSal, "Adubo");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("18/07/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(51.55), data, contaPlantas, contaSaidaSal, "Arame");
+			lancamentoRepositorio.save(lancamento);
 		
-		Lancamento lancamento = new Lancamento(TipoConta.REMUNERACAO.getCodigo(), new BigDecimal(1800), new Date(), contaSalario, null, "Pagamento");
-		Lancamento lancamento2 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(120), new Date(), contaEntradaGas, contaSaidaSal, "Posto Santos Dumont");
-		Lancamento lancamento3 = new Lancamento(TipoConta.TRANSFERENCIA.getCodigo(), new BigDecimal(80), new Date(), contaNuInvest, contaSaidaSal, "Investimento");
-		Lancamento lancamento4 = new Lancamento(TipoConta.REMUNERACAO.getCodigo(), new BigDecimal(120), new Date(), contaPLR, null, "PLR");
-		Lancamento lancamento5 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(150), new Date(), contaBcoCaixa, contaSaidaSal, "Parcela");
-		Lancamento lancamento6 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(11.58), new Date(), contaHigiene, contaSaidaSal, "Desodorante");
-		Lancamento lancamento7 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(25.54), new Date(), contaRoupas, contaSaidaSal, "Calça");
-		Lancamento lancamento8 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(10.90), new Date(), contaSaude, contaSaidaSal, "Remédio");
-		Lancamento lancamento9 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(70.88), new Date(), contaCarro, contaSaidaSal, "Óleo");
-		Lancamento lancamento10 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(24.55), new Date(), contaEducacao, contaSaidaSal, "Curso");
-		Lancamento lancamento11 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(45.59), new Date(), contaAcademia, contaSaidaSal, "Academia");
-		Lancamento lancamento12 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(15.87), new Date(), contaPresentes, contaSaidaSal, "Fulano");
-		Lancamento lancamento13 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(7.54), new Date(), contaApartamento, contaSaidaSal, "Torneira");
-		Lancamento lancamento14 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(12.25), new Date(), contaPlantas, contaSaidaSal, "Adubo");
-		Lancamento lancamento15 = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(51.55), new Date(), contaPlantas, contaSaidaSal, "Arame");
-		
-		
-		lancamentoRepositorio.save(lancamento);
-
-		lancamentoRepositorio.save(lancamento2);
-		lancamentoRepositorio.save(lancamento3);
-		lancamentoRepositorio.save(lancamento4);
-		lancamentoRepositorio.save(lancamento5);
-		lancamentoRepositorio.save(lancamento6);
-		lancamentoRepositorio.save(lancamento7);
-		lancamentoRepositorio.save(lancamento8);
-		lancamentoRepositorio.save(lancamento9);
-		lancamentoRepositorio.save(lancamento10);
-		lancamentoRepositorio.save(lancamento11);
-		lancamentoRepositorio.save(lancamento12);
-		lancamentoRepositorio.save(lancamento13);
-		lancamentoRepositorio.save(lancamento14);
-		lancamentoRepositorio.save(lancamento15);
-		
-		Usuario usuario = new Usuario("carlos@gmail.com", encoder.encode("123"));
-		usuarioRepositorio.save(usuario);
+			data = sdf.parse("18/07/2023");
+			lancamento = new Lancamento(TipoConta.TRANSFERENCIA.getCodigo(), new BigDecimal(30), data, contaSalario, contaNuInvest, "Resgate 30");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("18/07/2023");
+			lancamento = new Lancamento(TipoConta.TRANSFERENCIA.getCodigo(), new BigDecimal(1), data, contaNuInvest, contaSalario, "Investimento 1 real");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("04/06/2023");
+			lancamento = new Lancamento(TipoConta.REMUNERACAO.getCodigo(), new BigDecimal(1800), data, contaSalario, null, "Pagamento");
+			lancamentoRepositorio.save(lancamento);	
+			
+			data = sdf.parse("05/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(120), data, contaEntradaGas, contaSaidaSal, "Posto Santos Dumont");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("06/06/2023");
+			lancamento = new Lancamento(TipoConta.TRANSFERENCIA.getCodigo(), new BigDecimal(80), data, contaNuInvest, contaSaidaSal, "Investimento");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("06/06/2023");
+			lancamento = new Lancamento(TipoConta.REMUNERACAO.getCodigo(), new BigDecimal(120), data, contaPLR, null, "PLR");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("08/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(150), data, contaBcoCaixa, contaSaidaSal, "Parcela");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("09/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(11.58), data, contaHigiene, contaSaidaSal, "Desodorante");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("10/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(25.54), data, contaRoupas, contaSaidaSal, "Calça");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("11/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(10.90), data, contaSaude, contaSaidaSal, "Remédio");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("12/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(70.88), data, contaCarro, contaSaidaSal, "Óleo");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("13/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(24.55), data, contaEducacao, contaSaidaSal, "Curso");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("14/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(45.59), data, contaAcademia, contaSaidaSal, "Academia");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("15/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(15.87), data, contaPresentes, contaSaidaSal, "Fulano");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("16/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(7.54), data, contaApartamento, contaSaidaSal, "Torneira");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("17/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(12.25), data, contaPlantas, contaSaidaSal, "Adubo");
+			lancamentoRepositorio.save(lancamento);
+			
+			data = sdf.parse("18/06/2023");
+			lancamento = new Lancamento(TipoConta.DESPESA.getCodigo(), new BigDecimal(51.55), data, contaPlantas, contaSaidaSal, "Arame");
+			lancamentoRepositorio.save(lancamento);		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			Usuario usuario = new Usuario("carlos@gmail.com", encoder.encode("123"));
+			usuarioRepositorio.save(usuario);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 		
 		
